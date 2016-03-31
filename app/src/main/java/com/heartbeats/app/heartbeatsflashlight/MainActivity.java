@@ -21,7 +21,7 @@ import android.hardware.camera2.CameraManager;
 public class MainActivity extends Activity {
 
     //flag to detect flash is on or off
-    private boolean isLighOn = false;
+    private boolean isLighOn = true;
     private boolean lightTriger = false;
     private CameraManager manager;
     private String cameraId;
@@ -56,7 +56,6 @@ public class MainActivity extends Activity {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
             manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
             try {
                 cameraId = findCamera();
@@ -90,6 +89,8 @@ public class MainActivity extends Activity {
                         e.printStackTrace();
                     }
                     thread1 = (null);
+
+
                 }
 
             }
@@ -240,7 +241,7 @@ public class MainActivity extends Activity {
             p.setFlashMode(Parameters.FLASH_MODE_OFF);
 
             camera.setParameters(p);
-            camera.startPreview();
+            camera.stopPreview();
             isLighOn = true;
 
 
